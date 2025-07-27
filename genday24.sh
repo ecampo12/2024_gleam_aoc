@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# usage 
+if [[ -z "$1" ]]; then
+    echo "Usage: gendayxx.sh <day>"
+    echo "Example: gendayxx.sh 1"
+    return
+fi
+
 # day variable has no leading 0 and must be between 1 and 25
 day=${1##+(0)}
 if ((day < 1 || day > 25)); then
@@ -10,7 +17,7 @@ fi
 project=$(printf "day%02d" $1)
 
 # year variable is the current year
-year=9999
+year=2024
 
 # get session cookie from file if .session exists
 if [[ -f ".session" ]]; then
@@ -37,7 +44,7 @@ curl -s "https://adventofcode.com/${year}/day/${day}/input" --cookie "session=${
 # Remove the trailing blank line
 truncate -s -1 input.txt
 
-echo -n "import gleam/io
+echo -n "import gleam/format.{printf}
 import simplifile.{read}
 
 pub fn part1(input: String) -> Int {
@@ -51,14 +58,13 @@ pub fn part2(input: String) -> Int {
 pub fn main() {
   let assert Ok(input) = read(\"input.txt\")
   let part1_ans = part1(input)
-  io.print(\"Part 1: \")
-  io.debug(part1_ans)
+  printf(\"Part 1: ~b~n\", part1_ans)
   let part2_ans = part2(input)
-  io.print(\"Part 2: \")
-  io.debug(part2_ans)
+  printf(\"Part 2: ~b~n\", part2_ans)
 }" > src/${project}.gleam
 gleam add simplifile # used to read files
 gleam add gleam_regexp@1 #regex
+gleam add format@1
 
 echo -n "import ${project}.{part1, part2}
 import gleeunit
