@@ -9,4 +9,4 @@ check out the puzzles at [adventofcode.com](https://adventofcode.com/2024)
 ## **Note**
 
 - I will try to not post my puzzle input, so you will have to get your own.
-- Gleam solutions were written in gleam 1.9.1, and may not work on older versions.
+- Gleam solutions were written in gleam 1.11.1, and may not work on older versions.
