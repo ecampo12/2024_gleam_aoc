@@ -1,0 +1,9 @@
+.vscode
+.session
+# ignore input.txt file in all folders
+input.txt
+# Gleam stuff
+*.beam
+*.ez
+build
+erl_crash.dump
