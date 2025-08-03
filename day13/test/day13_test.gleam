@@ -1,4 +1,4 @@
-import day13.{part1, part2}
+import day13.{part1}
 import gleeunit
 import gleeunit/should
 
